@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import { useDeletedCharacters } from "../hooks/useDeletedCharacters";
 
 interface Props {
   characterId: string;
 }
 
-export const DeleteButton: React.FC<Props> = ({ characterId }) => {
+export const DeleteButton: React.FC<Props> = memo(({ characterId }) => {
   const { isDeleted, softDeleteCharacter, restoreCharacter } = useDeletedCharacters();
   const deleted = isDeleted(characterId);
 
@@ -21,7 +21,7 @@ export const DeleteButton: React.FC<Props> = ({ characterId }) => {
     <button
       onClick={handleClick}
       className="p-2 rounded-full transition-colors hover:bg-gray-100"
-      title={deleted ? "Restore character" : "Delete character"}
+      title={deleted ? "Restore character from deleted" : "Move to deleted (soft delete)"}
     >
       {deleted ? (
         <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
@@ -34,4 +34,4 @@ export const DeleteButton: React.FC<Props> = ({ characterId }) => {
       )}
     </button>
   );
-};
+});

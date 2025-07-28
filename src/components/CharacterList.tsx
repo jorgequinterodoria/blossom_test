@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import type { Character } from "../types";
 import { CharacterCard } from "./CharacterCard";
 import { useFavorites } from "../hooks/useFavorites";
@@ -16,8 +16,11 @@ export const CharacterList: React.FC<Props> = ({
 }) => {
   const { isFavorite } = useFavorites();
   
-  const favoriteCharacters = characters.filter(character => isFavorite(character.id));
-  const regularCharacters = characters.filter(character => !isFavorite(character.id));
+  const { favoriteCharacters, regularCharacters } = useMemo(() => {
+    const favorites = characters.filter(character => isFavorite(character.id));
+    const regulars = characters.filter(character => !isFavorite(character.id));
+    return { favoriteCharacters: favorites, regularCharacters: regulars };
+  }, [characters, isFavorite]);
 
   return (
     <div className="space-y-4">

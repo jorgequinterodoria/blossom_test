@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import type { Character } from "../types";
 import { FavoriteButton } from "./FavoriteButton";
 import { DeleteButton } from "./DeleteButton";
@@ -9,7 +9,7 @@ interface Props {
   isSelected?: boolean;
 }
 
-export const CharacterCard: React.FC<Props> = ({ character, onClick, isSelected = false }) => (
+export const CharacterCard: React.FC<Props> = memo(({ character, onClick, isSelected = false }) => (
   <div
     className={`flex items-center px-6 py-3 cursor-pointer transition-colors border-l-4 ${
       isSelected 
@@ -37,4 +37,4 @@ export const CharacterCard: React.FC<Props> = ({ character, onClick, isSelected 
       <DeleteButton characterId={character.id} />
     </div>
   </div>
-);
+));

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, memo } from "react";
 import { useFavorites } from "../hooks/useFavorites";
 
 interface Props {
@@ -6,9 +6,10 @@ interface Props {
   variant?: 'small' | 'large';
 }
 
-export const FavoriteButton: React.FC<Props> = ({ characterId, variant = 'small' }) => {
+export const FavoriteButton: React.FC<Props> = memo(({ characterId, variant = 'small' }) => {
   const { isFavorite, toggleFavorite } = useFavorites();
-
+  
+  const isFav = useMemo(() => isFavorite(characterId), [isFavorite, characterId]);
   const isLarge = variant === 'large';
   
   return (
@@ -23,15 +24,16 @@ export const FavoriteButton: React.FC<Props> = ({ characterId, variant = 'small'
         e.stopPropagation();
         toggleFavorite(characterId);
       }}
-      aria-label={isFavorite(characterId) ? "Unfavorite" : "Favorite"}
+      aria-label={isFav ? "Unfavorite" : "Favorite"}
+      title={isFav ? "Remove from favorites" : "Add to favorites"}
     >
       <svg 
         className={`${isLarge ? 'w-6 h-6' : 'w-4 h-4'} ${
-          isFavorite(characterId) ? "fill-current" : "text-gray-300"
+          isFav ? "fill-current" : "text-gray-300"
         }`}
-        style={isFavorite(characterId) ? {color: 'var(--secondary-600)'} : {}}
+        style={isFav ? {color: 'var(--secondary-600)'} : {}}
         viewBox="0 0 24 24"
-        fill={isFavorite(characterId) ? "currentColor" : "none"}
+        fill={isFav ? "currentColor" : "none"}
         stroke="currentColor"
         strokeWidth="2"
       >
@@ -43,4 +45,4 @@ export const FavoriteButton: React.FC<Props> = ({ characterId, variant = 'small'
       </svg>
     </button>
   );
-};
+});
