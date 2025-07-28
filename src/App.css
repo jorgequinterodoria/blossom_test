@@ -1,0 +1,60 @@
+@import "tailwindcss";
+/* Estilos específicos de la aplicación */
+.filter-button {
+  padding: 0.75rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  border-width: 1px;
+}
+
+.filter-button-active {
+  background-color: var(--primary-100);
+  color: var(--primary-700);
+  border-color: var(--primary-100);
+}
+
+.filter-button-inactive {
+  background-color: #f3f4f6;
+  color: #4b5563;
+  border-color: #e5e7eb;
+}
+.filter-button-inactive:hover {
+  background-color: #e5e7eb;
+}
+
+.character-card {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition-property: color, background-color;
+}
+
+.character-card-selected {
+  background-color: var(--primary-100);
+  border-left-width: 4px;
+  border-left-color: var(--primary-600);
+}
+
+.character-card-normal {
+  background-color: #f9fafb;
+}
+
+.section-header {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
