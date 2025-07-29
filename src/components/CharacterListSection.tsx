@@ -20,11 +20,11 @@ const CharacterListSection: React.FC<CharacterListSectionProps> = ({
   error
 }) => {
   return (
-    <div className="flex-1 overflow-y-auto p-4 md:p-6">
+    <div className="flex-1 overflow-y-auto px-4 md:px-6 py-2">
       <div className="space-y-4">
         {favoriteCharacters.length > 0 && (
           <div>
-            <div className="px-2 md:px-6 py-2 text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <div className="px-2 py-2 text-xs font-medium text-gray-500 uppercase tracking-wider">
               STARRED CHARACTERS ({favoriteCharacters.length})
             </div>
             <div className="space-y-1">
@@ -41,7 +41,7 @@ const CharacterListSection: React.FC<CharacterListSectionProps> = ({
         )}
         
         <div>
-          <div className="px-2 md:px-6 py-2 text-xs font-medium text-gray-500 uppercase tracking-wider">
+          <div className="px-2 py-2 text-xs font-medium text-gray-500 uppercase tracking-wider">
             CHARACTERS ({regularCharacters.length})
           </div>
           <div className="space-y-1">

@@ -122,7 +122,7 @@ describe('CommentBox', () => {
     
     render(<CommentBox characterId="1" />);
     
-    const commentDiv = screen.getByText((_, element) => {
+    const commentDiv = screen.getByText((content, element) => {
       return element?.textContent === 'Line 1\nLine 2\n\nLine 4';
     });
     expect(commentDiv).toHaveClass('whitespace-pre-line');
