@@ -55,20 +55,28 @@ const MobileFilterOverlay: React.FC<MobileFilterOverlayProps> = ({
   );
 
   return (
-    <div className="fixed inset-0 bg-white z-50 md:hidden">
+    <div className="fixed inset-0 bg-white z-50 md:hidden animate-slide-up">
       <div className="flex flex-col h-full">
-        <div className="flex items-center p-4 border-b border-gray-200">
-          <button onClick={onClose} className="p-2 mr-3">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {/* Header */}
+        <div className="flex items-center p-4 border-b border-gray-200 bg-white shadow-sm">
+          <button 
+            onClick={onClose} 
+            className="p-2 mr-3 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+          >
+            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          <h2 className="text-lg font-semibold">Filters</h2>
+          <h2 className="text-xl font-bold text-gray-900">Filters</h2>
         </div>
         
-        <div className="flex-1 overflow-y-auto p-4 space-y-6">
-          <div>
-            <h3 className="text-base font-medium text-gray-900 mb-3">Characters</h3>
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto p-6 space-y-8 bg-gray-50">
+          <div className="bg-white rounded-xl p-5 shadow-sm">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+              <span className="w-3 h-3 bg-purple-500 rounded-full mr-3"></span>
+              Characters
+            </h3>
             {renderFilterButtons(
               ['All', 'Starred', 'Others'] as const,
               characterFilter,
@@ -76,8 +84,11 @@ const MobileFilterOverlay: React.FC<MobileFilterOverlayProps> = ({
             )}
           </div>
           
-          <div>
-            <h3 className="text-base font-medium text-gray-900 mb-3">Species</h3>
+          <div className="bg-white rounded-xl p-5 shadow-sm">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+              <span className="w-3 h-3 bg-blue-500 rounded-full mr-3"></span>
+              Species
+            </h3>
             {renderFilterButtons(
               ['All', 'Human', 'Alien'] as const,
               speciesFilter,
@@ -85,8 +96,11 @@ const MobileFilterOverlay: React.FC<MobileFilterOverlayProps> = ({
             )}
           </div>
           
-          <div>
-            <h3 className="text-base font-medium text-gray-900 mb-3">Status</h3>
+          <div className="bg-white rounded-xl p-5 shadow-sm">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+              <span className="w-3 h-3 bg-green-500 rounded-full mr-3"></span>
+              Status
+            </h3>
             {renderFilterButtons(
               ['All', 'Alive', 'Dead', 'unknown'] as const,
               statusFilter,
@@ -94,8 +108,11 @@ const MobileFilterOverlay: React.FC<MobileFilterOverlayProps> = ({
             )}
           </div>
           
-          <div>
-            <h3 className="text-base font-medium text-gray-900 mb-3">Gender</h3>
+          <div className="bg-white rounded-xl p-5 shadow-sm">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+              <span className="w-3 h-3 bg-orange-500 rounded-full mr-3"></span>
+              Gender
+            </h3>
             {renderFilterButtons(
               ['All', 'Male', 'Female', 'Genderless', 'unknown'] as const,
               genderFilter,
@@ -104,15 +121,16 @@ const MobileFilterOverlay: React.FC<MobileFilterOverlayProps> = ({
           </div>
         </div>
         
-        <div className="p-4 border-t border-gray-200">
+        {/* Footer */}
+        <div className="p-6 border-t border-gray-200 bg-white">
           <button 
             onClick={onClose}
-            className="w-full text-white py-3 px-4 rounded-lg text-base font-medium transition-colors"
+            className="w-full text-white py-4 px-6 rounded-xl text-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
             style={{backgroundColor: 'var(--primary-600)'} as React.CSSProperties}
             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--primary-700)')}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--primary-600)')}
           >
-            Filter
+            Apply Filters
           </button>
         </div>
       </div>

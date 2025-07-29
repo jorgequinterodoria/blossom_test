@@ -15,10 +15,10 @@ export const FavoriteButton: React.FC<Props> = memo(({ characterId, variant = 's
   return (
     <button
       type="button"
-      className={`focus:outline-none rounded-full transition-colors ${
+      className={`group focus:outline-none rounded-full transition-all duration-300 transform hover:scale-110 active:scale-95 ${
         isLarge 
-          ? 'p-2 bg-white shadow-lg hover:shadow-xl' 
-          : 'p-0.5 hover:bg-gray-100'
+          ? 'p-3 bg-white shadow-lg hover:shadow-xl border-2 border-gray-100' 
+          : 'p-2 bg-white/90 backdrop-blur-sm shadow-md hover:shadow-lg border border-gray-200'
       }`}
       onClick={e => {
         e.stopPropagation();
@@ -27,22 +27,37 @@ export const FavoriteButton: React.FC<Props> = memo(({ characterId, variant = 's
       aria-label={isFav ? "Unfavorite" : "Favorite"}
       title={isFav ? "Remove from favorites" : "Add to favorites"}
     >
-      <svg 
-        className={`${isLarge ? 'w-6 h-6' : 'w-4 h-4'} ${
-          isFav ? "fill-current" : "text-gray-300"
-        }`}
-        style={isFav ? {color: 'var(--secondary-600)'} : {}}
-        viewBox="0 0 24 24"
-        fill={isFav ? "currentColor" : "none"}
-        stroke="currentColor"
-        strokeWidth="2"
-      >
-        <path 
-          strokeLinecap="round" 
-          strokeLinejoin="round" 
-          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" 
-        />
-      </svg>
+      <div className="relative">
+        {/* Heart icon */}
+        <svg 
+          className={`${isLarge ? 'w-6 h-6' : 'w-5 h-5'} transition-all duration-300 ${
+            isFav 
+              ? "fill-current transform scale-110" 
+              : "text-gray-400 group-hover:text-gray-500"
+          }`}
+          style={isFav ? {color: 'var(--secondary-600)'} : {}}
+          viewBox="0 0 24 24"
+          fill={isFav ? "currentColor" : "none"}
+          stroke="currentColor"
+          strokeWidth={isFav ? "0" : "2"}
+        >
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" 
+          />
+        </svg>
+        
+        {/* Pulse animation when favorited */}
+        {isFav && (
+          <div 
+            className={`absolute inset-0 rounded-full animate-ping opacity-30 ${
+              isLarge ? 'w-6 h-6' : 'w-5 h-5'
+            }`}
+            style={{backgroundColor: 'var(--secondary-600)'}}
+          />
+        )}
+      </div>
     </button>
   );
 });
